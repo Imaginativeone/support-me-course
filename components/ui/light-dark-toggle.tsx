@@ -5,16 +5,23 @@ import { Tooltip, TooltipProvider } from "./tooltip"
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip"
 import { MoonIcon, SunIcon } from "lucide-react"
 
-export function LightDarkToggle() {
+type Props = {
+  className?: string;  
+}
+
+export function LightDarkToggle({className}: Props) {
   
   const [isDarkMode, setIsDarkMode] = useState(true)
   
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger onClick={() => {
-          setIsDarkMode(prevValue => !prevValue)
-        }}>
+        <TooltipTrigger 
+          className={className}
+          onClick={() => {
+            setIsDarkMode(prevValue => !prevValue)
+          }}
+        >
           { isDarkMode ? <MoonIcon /> : <SunIcon /> }
         </TooltipTrigger>
         <TooltipContent>
