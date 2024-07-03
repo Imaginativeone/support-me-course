@@ -20,6 +20,7 @@ export function LightDarkToggle({className}: Props) {
           className={className}
           onClick={() => {
             setIsDarkMode(prevValue => !prevValue)
+            document.body.classList.toggle("dark")
           }}
         >
           { isDarkMode ? <MoonIcon /> : <SunIcon /> }
