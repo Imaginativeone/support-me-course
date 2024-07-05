@@ -18,7 +18,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PasswordInput } from "@/components/ui/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PersonStandingIcon } from "lucide-react";
 import Link from "next/link";
@@ -28,7 +27,9 @@ import * as z from "zod";
 
 const formSchema = z.object({
   email: z.string().email(),
-  // password: z.string(),
+  accountType: z.enum(["personal", "company"]),
+  companyName: z.string().optional(),
+  numberOfemployees: z.coerce.number().optional()
 });
 
 export default function SignupPage() {
