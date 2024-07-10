@@ -52,14 +52,19 @@ const formSchema = z
         required_error: "You must accept the terms and conditions",
       })
       .refine((checked) => checked, "You must accept the terms and conditions"),
-    dob: z.date().refine((date) => {
+    dob: z.date().refine((date) => { // 'refine' as opposed to 'superRefine'
+
       const today = new Date();
-      const eighteedYearsAgo = new Date(
+
+      // Current Development
+      const eighteenYearsAgo = new Date(
         today.getFullYear() - 18,
         today.getMonth(),
         today.getDate()
       );
-      return date <= eighteedYearsAgo;
+
+      return date <= eighteenYearsAgo;
+      
     }, "You must be at least 18 years old"),
     password: z
       .string()
